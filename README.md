@@ -22,5 +22,6 @@ Now, supposing we want these extensions enabled, we could be smart and do some m
 This script patches the NVIDIA driver to "fix the bug", and then attempts to test sign it (Only setup for Windows 10 x64 currently).
 
 It is fugly, but has been tested to work on NVIDIA drivers 361.91 and 368.39...
+For test signing to work without additional modification, one must be on Windows 10 x64, have the WDK installed, and run the script as an administrator.
 
 Use At Your Own Risk...
