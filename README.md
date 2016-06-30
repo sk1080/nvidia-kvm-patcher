@@ -2,7 +2,9 @@
 
 So, so story so far:
 You have a VM that uses a passed-through NVIDIA graphics card
+
 However, the driver errored out with code 43, or outright blue-screened your VM
+
 This is because NVIDIA "Introduced a Bug" making their driver "Fail" on "Unsupported configurations", such as having a geforce, by "accidentally" detecting the prescence of a hypervisor
 
 Now, naturally, after some googling, you did something like this (libvirt config):
