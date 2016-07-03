@@ -10,7 +10,7 @@ This is because NVIDIA "Introduced a Bug" making their driver "Fail" on "Unsuppo
 Now, naturally, after some googling, you did something like this (libvirt config):
 ```xml
     <kvm>
-      <hidden state='off'/>
+      <hidden state='on'/>
     </kvm>
 ```
     
