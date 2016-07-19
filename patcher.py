@@ -68,7 +68,7 @@ if not os.path.isfile(inf2cat):
     print('[!] Failed to find Inf2Cat, Please Install Windows 10 WDK or Correct Path in Script')
     testsign_failed()
 
-#subprocess.call([inf2cat, '/driver:' + driver_path, '/os:10_X64'])
+subprocess.call([inf2cat, '/driver:' + driver_path, '/os:10_X64'])
 
 print(' [+] Generating and Installing TestSign Certificate')
 subprocess.call(["C:\\WINDOWS\\system32\\WindowsPowerShell\\v1.0\\powershell.exe",
