@@ -14,6 +14,12 @@ import sys
 import subprocess
 import os
 
+# TODO: Wildcard Search
+PATCHES = {
+    "41FF978804000085C0": "31C0909090909085C0",  # 361.91 - 368.39
+    "41FF97B804000085C0": "31C0909090909085C0",  # 372.54
+}
+
 
 def testsign_failed():
     print('[!] Testsigning Failed, Please Test Sign Driver Manually or Load via disabling enforcement')
@@ -46,10 +52,10 @@ if not os.path.isfile(sys_path):
 driver_data = open(sys_path, 'rb').read()
 
 print('[+] Patching KVM CPUID Check and unintentionally killing Vendor ID Check [FU NVIDIA]')
-pattern = bytes.fromhex('41FF978804000085C0')
-patch = bytes.fromhex('31C0909090909085C0')
-
-driver_data = driver_data.replace(pattern, patch)
+for pattern, patch in PATCHES.items():
+    pattern = bytes.fromhex(pattern)
+    patch = bytes.fromhex(patch)
+    driver_data = driver_data.replace(pattern, patch)
 
 print('[+] Writing Patched Driver')
 open(sys_path, 'wb').write(driver_data)
