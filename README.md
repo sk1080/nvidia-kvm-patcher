@@ -4,10 +4,9 @@ Quick Instructions:
 
     1. Start NVIDIA Driver Setup, Exit Before Installing (Unpacks to C:/NVIDIA)
     2. Install Windows 10 WDK
-    3. Install Python 3
-    4. Enable Testsigning and Reboot
-    5. Run python /path/to/patcher.py C:/NVIDIA/DisplayDriver/Version/Win10_64/International/Display.Driver
-    6. Install Driver Through Extracted Installer (In C:/NVIDIA/DisplayDriver/Version)
+    3. Enable Test Mode and Reboot
+    4. Open powershell and run patcher.ps1 C:/NVIDIA/DisplayDriver/Version/Win10_64/International/Display.Driver
+    5. Install Driver Through Extracted Installer (In C:/NVIDIA/DisplayDriver/Version)
     
 ### TLDR
 
