@@ -30,10 +30,9 @@ Naturally, you can't use those virtualization extensions anymore, as the guest h
 
 Now, supposing we want these extensions enabled, we could be smart and do some magic down at the KVM level to detect when nvidia is probing and only feed it the BS. However, I am not smart, and therefore I am going to do something very dumb...
 
-This script patches the NVIDIA driver to "fix the bug", and then attempts to test sign it (Only setup for Windows 10 x64 currently).
+This script patches the NVIDIA driver to "fix the bug", and then attempts to test sign it
 
-It is fugly, but has been tested to work on NVIDIA drivers 361.91 and 368.39...
-For test signing to work without additional modification, one must be on Windows 10 x64, have the WDK installed, and run the script as an administrator.
+It is fugly, but has been tested to work on various NVIDIA drivers between 361.91 and 373.06
 
 Use At Your Own Risk...
 
