@@ -1,13 +1,14 @@
 # nvidia-kvm-patcher
 
-Quick Instructions:
+### Quick Instructions
 
     1. Start NVIDIA Driver Setup, Exit Before Installing (Unpacks to C:/NVIDIA)
-    2. Install Windows 10 WDK
-    3. Enable Test Mode and Reboot
-    4. Open powershell and run patcher.ps1 C:/NVIDIA/DisplayDriver/Version/Win10_64/International/Display.Driver
-    5. Install Driver Through Extracted Installer (In C:/NVIDIA/DisplayDriver/Version)
-    
+    2. Install the appropriate WDK/DDK, See OS Support
+    3. If on Windows 7, See Windows 7 Workaround
+    4. Enable Test Mode and Reboot
+    5. Open powershell and run patcher.ps1 C:/NVIDIA/DisplayDriver/Version/Win10_64/International/Display.Driver
+    6. Install Driver Through Extracted Installer (In C:/NVIDIA/DisplayDriver/Version)
+
 ### TLDR
 
 So, so story so far:
@@ -23,7 +24,7 @@ Now, naturally, after some googling, you did something like this (libvirt config
       <hidden state='on'/>
     </kvm>
 ```
-    
+
 And this solves the problem, by masking off virtualization related CPUIDs/MSRs. However, this comes with the following issue:
 Naturally, you can't use those virtualization extensions anymore, as the guest has no way of detecting them
 
@@ -44,6 +45,17 @@ Use At Your Own Risk...
 
 ### OS Support
 
-At some time, I plan to update this to support OS such as windows 7 and 8, however, at this time, only Windows 10 x64 is supported
+* Windows 7 x64 is supported using the [Windows 7 DDK] (https://www.microsoft.com/en-us/download/details.aspx?id=11800)
+* Windows 10 x64 is supported using the [Windows 10 WDK] (https://developer.microsoft.com/en-us/windows/hardware/windows-driver-kit)
 
+### Windows 7 Workaround
+
+For some reason, at least on the test system, signtool in the Windows 7 WDK Pre-Dates The Timestamp (possible reverse timezone compensation???). To get around this, remove all instances of the SKSoftware Certificate using mmc (if you have ran the script before), pre-date your clock by 2 days, and execute gencert.ps1 using powershell.
+
+### Tested Host Platforms
+* libvirtd 2.3.0 running qemu 2.6.50 using OVMF UEFI bios
+* xen 4.7 using bios
+
+### Tested Non-Working Host Platforms
+* libvirtd 2.3.0 running qemu 2.6.50 using bios
 
