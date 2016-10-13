@@ -67,7 +67,7 @@ if ($Certs.length -eq 0) {
             $makecert = 'C:/WinDDK/7600.16385.1/bin/amd64/makecert.exe'
             if(-Not(Test-Path $makecert))
             {
-                Write-Host "[!] Failure: Unable to find $installer_config"
+                Write-Host "[!] Failure: Unable to find $makecert"
                 exit
             }
             
