@@ -46,6 +46,15 @@ else
 $CertFile = Join-Path -Path $pwd -ChildPath "TestSign.cer"
 Write-Host "Certificate Path: " $CertFile
 
+#Check For Cert in PrivateCertStore and move it to My if it exists (compat with initial commit)
+$Cert = Get-ChildItem Cert:\CurrentUser\PrivateCertStore | Where {$_.subject -eq 'CN=SKSoftware'}
+if($Cert -ne $null)
+{
+    Write-Host "Moving Cert in PrivateCertStore to My"
+    $thumb = $Cert.Thumbprint
+    Move-Item "Cert:\CurrentUser\PrivateCertStore\$thumb" "Cert:\CurrentUser\My\"
+}
+
 #Check For Existence of Certificate In Root
 $Certs = @(Get-ChildItem cert:\LocalMachine\Root | Where {$_.subject -eq 'CN=SKSoftware'})
 if ($Certs.length -eq 0) {
