@@ -1,5 +1,7 @@
 # nvidia-kvm-patcher
 
+Generic fix to NVIDIA Code 43 on Virtual Machines
+
 ### Quick Instructions
 
     1. Start NVIDIA Driver Setup, Exit Before Installing (Unpacks to C:/NVIDIA)
@@ -9,32 +11,34 @@
     5. Open powershell and run patcher.ps1 C:/NVIDIA/DisplayDriver/Version/Win10_64/International/Display.Driver
     6. Install Driver Through Extracted Installer (In C:/NVIDIA/DisplayDriver/Version)
 
-### TLDR
+### Details
 
-So, so story so far:
+So, the story so far:
 You have a VM that uses a passed-through NVIDIA graphics card
 
 However, the driver errored out with code 43, or outright blue-screened your VM
 
 This is because NVIDIA "Introduced a Bug" making their driver "Fail" on "Unsupported configurations", such as having a geforce, by "accidentally" detecting the prescence of a hypervisor
 
-Now, naturally, after some googling, you did something like this (libvirt config):
-```xml
-    <kvm>
-      <hidden state='on'/>
-    </kvm>
+### Alternate Workaround (recent libvirt + qemu)
 ```
-
-And this solves the problem, by masking off virtualization related CPUIDs/MSRs. However, this comes with the following issue:
-Naturally, you can't use those virtualization extensions anymore, as the guest has no way of detecting them
-
-Now, supposing we want these extensions enabled, we could be smart and do some magic down at the KVM level to detect when nvidia is probing and only feed it the BS. However, I am not smart, and therefore I am going to do something very dumb...
-
-This script patches the NVIDIA driver to "fix the bug", and then attempts to test sign it
-
-It is fugly, but has been tested to work on various NVIDIA drivers between 361.91 and 373.06
-
-Use At Your Own Risk...
+<domain>
+    ...
+        <features>
+            ...
+            <kvm>
+                <hidden state='on'/>
+            </kvm>
+            ...
+            <hyperv>
+                ...
+                <vendor_id state='on' value='whatever'/>
+            </hyperv>
+            ...
+        </features>
+    ...
+</domain>
+```
 
 ### Troubleshooting
 
@@ -51,8 +55,8 @@ Use At Your Own Risk...
 
 For some reason, at least on the test system, signtool in the Windows 7 WDK Pre-Dates The Timestamp (possible reverse timezone compensation???). To get around this, remove all instances of the SKSoftware Certificate using mmc (if you have ran the script before), pre-date your clock by 2 days, and execute gencert.ps1 using powershell.
 
-### Tested Host Platforms
-* libvirtd 2.3.0 running qemu 2.6.50 using OVMF UEFI bios
+### Tested Working Host Platforms
+* libvirtd 2.3.0 running qemu 2.6.50 using OVMF UEFI
 * xen 4.7 using bios
 
 ### Tested Non-Working Host Platforms
