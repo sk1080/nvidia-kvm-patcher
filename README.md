@@ -45,6 +45,8 @@ This is because NVIDIA "Introduced a Bug" making their driver "Fail" on "Unsuppo
 1. If testsigning fails, make sure you are running Windows 10 x64, and have the WDK Installed
 2. Windows will attempt to overwrite the driver using versions from windows update, you will want to blacklists these updates using Microsoft's tool: https://support.microsoft.com/en-us/kb/3073930
 3. Having another problem? File an Issue. I would love some feedback on my crappy script.
+4. Still getting error 43? Ensure the graphics card is using Message Signaled Interrupts before rebooting: http://forums.guru3d.com/showthread.php?t=378044
+5. Still getting error 43 even with MSIs? Some system configurations (hypervisor/hardware) may not be capable of supporting a passed through nvidia card. I have listed some systems that I have personally tested below.
 
 ### OS Support
 
@@ -56,7 +58,8 @@ This is because NVIDIA "Introduced a Bug" making their driver "Fail" on "Unsuppo
 For some reason, at least on the test system, signtool in the Windows 7 WDK Pre-Dates The Timestamp (possible reverse timezone compensation???). To get around this, remove all instances of the SKSoftware Certificate using mmc (if you have ran the script before), pre-date your clock by 2 days, and execute gencert.ps1 using powershell.
 
 ### Tested Working Host Platforms
-* libvirtd 2.3.0 running qemu 2.6.50 using OVMF UEFI
+Tested with a Asus Z170-WS, i7-6700k, and kernel 4.7
+* libvirtd 2.3.0 running qemu 2.6.50 using OVMF UEFI, with PCIe ACS Override patch
 * xen 4.7 using bios
 
 ### Tested Non-Working Host Platforms
