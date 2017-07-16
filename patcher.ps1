@@ -146,7 +146,7 @@ Write-Host '    [+] Generating Catalog File (this may take a while)'
 & $inf2cat /driver:`"$directory`" /os:$ostype | Out-Null
 
 Write-Host '    [+] Generating and Installing Certificate'
-$ScriptPath = Split-Path $MyInvocation.InvocationName
+$ScriptPath = Split-Path -Parent $MyInvocation.MyCommand.Definition
 & (Join-Path $ScriptPath "gencert.ps1") -directory $ScriptPath | Out-Null
 
 Write-Host '    [+] Signing Catalog File'
