@@ -51,7 +51,7 @@ $text = $sr.ReadToEnd()
 $sr.close()
 $stream.close()
 
-$pattern = '\x48\x8D\x44\x24\x50\x4C\x8D\x4C\x24\x44\x45\x33\xC0\x48\x89\x44\x24\x30' # + 0x2B
+$pattern = '\xBB\x00\x00\x00\x40\x48\x8D\x44\x24\x50' # + 0x30
 $patch = [Byte[]]@(0x31, 0xC0, 0x90, 0x90, 0x90, 0x90, 0x90, 0x85, 0xC0)
 
 $regex = [Regex]$pattern
@@ -63,7 +63,7 @@ if($count -ne 1)
     exit
 }
 
-$offset = $matches[0].Index + 0x2B
+$offset = $matches[0].Index + 0x30
 
 $stream = New-Object IO.FileStream -ArgumentList $sys_unpacked, 'Open', 'Write'
 [void] $stream.Seek($offset, 'Begin')
