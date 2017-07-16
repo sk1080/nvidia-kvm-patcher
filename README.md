@@ -1,3 +1,6 @@
+# Project Currently Outdated, Last Tested Driver is 372.70
+Patch doesn't apply to the latest drivers, use kvm (see Alternate Workaround), or alternativly, use an older driver
+
 # nvidia-kvm-patcher
 
 Generic fix to NVIDIA Code 43 on Virtual Machines
