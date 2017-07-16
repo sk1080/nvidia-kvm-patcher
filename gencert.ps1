@@ -90,7 +90,7 @@ if ($Certs.length -eq 0) {
         $Cert = $Certs[0]
     }
     
-    if (Get-Command Export-Certificate -errorAction SilentlyContinue)
+    if (Get-Command Export-Certificate)
     {
         $output = Export-Certificate -Cert $Cert -FilePath $CertFile -Type CERT
     }
