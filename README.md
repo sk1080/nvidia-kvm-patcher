@@ -62,6 +62,10 @@ Tested with a Asus Z170-WS, i7-6700k, and kernel 4.7
 * libvirtd 2.3.0 running qemu 2.6.50 using OVMF UEFI, with PCIe ACS Override patch
 * xen 4.7 using bios
 
+Also tested with:
+* Hardware: MSI Z370 Gaming Pro Carbon, i7-8700k, GTX 1080 Ti (Windows driver 391.35)
+* Host system: Ubuntu 18.04, Kernel 4.15, libvirtd 4.0.0, qemu 2.11.1 (OVMF UEFI)
+
 ### Tested Non-Working Host Platforms
 * libvirtd 2.3.0 running qemu 2.6.50 using bios
 
