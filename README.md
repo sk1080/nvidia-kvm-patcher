@@ -7,7 +7,7 @@ Generic fix to NVIDIA Code 43 on Virtual Machines
     1. Start NVIDIA Driver Setup, Exit Before Installing (Unpacks to C:/NVIDIA)
     2. Install the appropriate WDK/DDK, See OS Support
     3. If on Windows 7, See Windows 7 Workaround
-    4. Enable Test Mode and Reboot
+    4. Enable Test Mode (bcdedit /set testsigning on) and Reboot
     5. Open powershell and run patcher.ps1 C:/NVIDIA/DisplayDriver/Version/Win10_64/International/Display.Driver
     6. Install Driver Through Extracted Installer (In C:/NVIDIA/DisplayDriver/Version)
 
