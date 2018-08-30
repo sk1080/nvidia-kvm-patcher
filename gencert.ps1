@@ -13,35 +13,35 @@ $adminRole=[System.Security.Principal.WindowsBuiltInRole]::Administrator
 
 # Check to see if we are currently running "as Administrator"
 if ($myWindowsPrincipal.IsInRole($adminRole))
-   {
-   # We are running "as Administrator" - so change the title and background color to indicate this
-   $Host.UI.RawUI.WindowTitle = $myInvocation.MyCommand.Definition + "(Elevated)"
-   $Host.UI.RawUI.BackgroundColor = "DarkBlue"
-   clear-host
-   }
+{
+    # We are running "as Administrator" - so change the title and background color to indicate this
+    $Host.UI.RawUI.WindowTitle = $myInvocation.MyCommand.Definition + "(Elevated)"
+    $Host.UI.RawUI.BackgroundColor = "DarkBlue"
+    clear-host
+}
 else
-   {
-   # We are not running "as Administrator" - so relaunch as administrator
+{
+    # We are not running "as Administrator" - so relaunch as administrator
 
-   # Create a new process object that starts PowerShell
-   $newProcess = new-object System.Diagnostics.ProcessStartInfo "PowerShell";
+    # Create a new process object that starts PowerShell
+    $newProcess = new-object System.Diagnostics.ProcessStartInfo "PowerShell";
 
-   # Specify the current script path and name as a parameter
-   [string[]]$argList = @('-ExecutionPolicy', 'Unrestricted')
-   $argList += $myInvocation.MyCommand.Definition
-   $argList += @('-directory', $pwd)
-   $newProcess.Arguments = $argList
+    # Specify the current script path and name as a parameter
+    [string[]]$argList = @('-ExecutionPolicy', 'Unrestricted')
+    $argList += $myInvocation.MyCommand.Definition
+    $argList += @('-directory', $pwd)
+    $newProcess.Arguments = $argList
 
-   # Indicate that the process should be elevated
-   $newProcess.Verb = "runas";
+    # Indicate that the process should be elevated
+    $newProcess.Verb = "runas";
 
-   # Start the new process
-   $process = [System.Diagnostics.Process]::Start($newProcess);
-   $process.WaitForExit()
+    # Start the new process
+    $process = [System.Diagnostics.Process]::Start($newProcess);
+    $process.WaitForExit()
 
-   # Exit from the current, unelevated, process
-   exit
-   }
+    # Exit from the current, unelevated, process
+    exit
+}
 
 $CertFile = Join-Path -Path $pwd -ChildPath "TestSign.cer"
 Write-Host "Certificate Path: " $CertFile
@@ -72,16 +72,16 @@ if ($Certs.length -eq 0) {
         else
         {
             Write-Host "New-SelfSignedCertificate Not Available, Falling Back To Makecert"
-            
+
             $makecert = 'C:/WinDDK/7600.16385.1/bin/amd64/makecert.exe'
             if(-Not(Test-Path $makecert))
             {
                 Write-Host "[!] Failure: Unable to find $makecert"
                 exit
             }
-            
+
             & $makecert -r -pe -ss MY -n CN=SKSoftware -eku 1.3.6.1.5.5.7.3.3 $CertFile
-            
+
         }
     }
     else
@@ -89,7 +89,7 @@ if ($Certs.length -eq 0) {
         Write-Host "Certificate Found in User Store"
         $Cert = $Certs[0]
     }
-    
+
     if (Get-Command Export-Certificate)
     {
         $output = Export-Certificate -Cert $Cert -FilePath $CertFile -Type CERT
@@ -99,8 +99,8 @@ if ($Certs.length -eq 0) {
     $pfx = new-object System.Security.Cryptography.X509Certificates.X509Certificate2
     $pfx.import($CertFile)
     $store = new-object System.Security.Cryptography.X509Certificates.X509Store(
-        [System.Security.Cryptography.X509Certificates.StoreName]::Root,
-        "localmachine"
+    [System.Security.Cryptography.X509Certificates.StoreName]::Root,
+    "localmachine"
     )
     $store.open("MaxAllowed")
     $store.add($pfx)

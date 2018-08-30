@@ -5,10 +5,10 @@ Generic fix to NVIDIA Code 43 on Virtual Machines
 ### Quick Instructions
 
     1. Start NVIDIA Driver Setup, Exit Before Installing (Unpacks to C:/NVIDIA)
-    2. Install the appropriate WDK/DDK, See OS Support
+    2. Install the appropriate WDK/DDK (W10: https://docs.microsoft.com/en-us/windows-hardware/drivers/download-the-wdk) , See OS Support
     3. If on Windows 7, See Windows 7 Workaround
-    4. Enable Test Mode and Reboot
-    5. Open powershell and run patcher.ps1 C:/NVIDIA/DisplayDriver/Version/Win10_64/International/Display.Driver
+    4. Enable Test Mode (In admin cmd: bcdedit /set testsigning on) and Reboot
+    5. Open powershell and run patcher.ps1 C:\NVIDIA\DisplayDriver\372.54\Win10_64\International\Display.Driver
     6. Install Driver Through Extracted Installer (In C:/NVIDIA/DisplayDriver/Version)
 
 ### Details
@@ -61,6 +61,9 @@ For some reason, at least on the test system, signtool in the Windows 7 WDK Pre-
 Tested with a Asus Z170-WS, i7-6700k, and kernel 4.7
 * libvirtd 2.3.0 running qemu 2.6.50 using OVMF UEFI, with PCIe ACS Override patch
 * xen 4.7 using bios
+* Tested with an ASRock Z170 Extreme7+, i7-6700k, GTX 980 Ti, and Windows Server 2016 Standard (v1607 build 14393.0)
+* Stock Hyper-V role (Host) running Windows Server 2016 Standard (Guest, same version), Gen2 VM config v8, using Discrete Device Assignment
+* Tested with HP Z400, Nvidia GTX 750 TI, Windows server 2016, kvm + BIOS (not UEFI), dumped ROM as per https://pve.proxmox.com/wiki/Pci_passthrough, proxmox 5.2-7, qemu 5.0-32, Nvidia Drivers 372.54
 
 ### Tested Non-Working Host Platforms
 * libvirtd 2.3.0 running qemu 2.6.50 using bios
