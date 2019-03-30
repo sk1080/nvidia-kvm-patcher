@@ -62,6 +62,9 @@ Tested with a Asus Z170-WS, i7-6700k, and kernel 4.7
 * libvirtd 2.3.0 running qemu 2.6.50 using OVMF UEFI, with PCIe ACS Override patch
 * xen 4.7 using bios
 
+Tested with an ASRock Z170 Extreme7+, i7-6700k, GTX 980 Ti, and Windows Server 2016 Standard (v1607 build 14393.0)
+* Stock Hyper-V role (Host) running Windows Server 2016 Standard (Guest, same version), Gen2 VM config v8, using Discrete Device Assignment
+
 ### Tested Non-Working Host Platforms
 * libvirtd 2.3.0 running qemu 2.6.50 using bios
 
