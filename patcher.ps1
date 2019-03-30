@@ -1,9 +1,10 @@
 ﻿# Nvidia KVM Patcher
 # SK1080
 # License: Do whatever you want with this code
+# Use at your own risk!
 # Pardon my poor powershell skills
 
-# Note: Only Tested on Versions 361.91, 368.39, and 372.54
+# Note: Only Tested on Versions 361.91, 368.39, 372.54, and 419.67
 # Note: Targeted at Windows 10 X64, Fix Tool Paths for Testsigning and /os: option in Inf2Cat to support other OS
 # Note: Testsigning Requires Windows 10 WDK
 
@@ -86,7 +87,7 @@ Write-Host '[+] Attempting to Test Sign Driver'
 $inf2cat = ''
 $signtool = ''
 
-$inf2cat_paths = 'C:/Program Files (x86)/Windows Kits/10/bin/x86/Inf2Cat.exe', 'C:/WinDDK/7600.16385.1/bin/selfsign/Inf2Cat.exe'
+$inf2cat_paths = 'C:/Program Files (x86)/Windows Kits/10/bin/x86/Inf2Cat.exe', 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.17763.0/x86/Inf2Cat.exe', 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.17134.0/x86/Inf2Cat.exe', 'C:/WinDDK/7600.16385.1/bin/selfsign/Inf2Cat.exe'
 $signtool_paths = 'C:/Program Files (x86)/Windows Kits/10/Tools/bin/i386/signtool.exe', 'C:/WinDDK/7600.16385.1/bin/amd64/signtool.exe'
 
 foreach($path in $inf2cat_paths)
@@ -142,7 +143,7 @@ if($ostype -eq '')
 }
 Write-Host "    [+] Detected OS Type: $ostype"
 
-Write-Host '    [+] Generating Catalog File (this may take a while)'
+Write-Host '    [+] Generating Catalog File (this may take a while, and sometimes you may have to press enter to get results)'
 & $inf2cat /driver:`"$directory`" /os:$ostype | Out-Null
 
 Write-Host '    [+] Generating and Installing Certificate'
