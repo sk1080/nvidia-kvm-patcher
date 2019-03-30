@@ -7,7 +7,7 @@ Generic fix to NVIDIA Code 43 on Virtual Machines
     1. Start NVIDIA Driver Setup, Exit Before Installing (Unpacks to C:/NVIDIA)
     2. Install the appropriate WDK/DDK, See OS Support
     3. If on Windows 7, See Windows 7 Workaround
-    4. Enable Test Mode and Reboot
+    4. Enable Test Mode (bcdedit /set testsigning on) and Reboot
     5. Open powershell and run patcher.ps1 C:/NVIDIA/DisplayDriver/Version/Win10_64/International/Display.Driver
     6. Install Driver Through Extracted Installer (In C:/NVIDIA/DisplayDriver/Version)
 
@@ -65,6 +65,9 @@ Tested with a Asus Z170-WS, i7-6700k, and kernel 4.7
 Also tested with:
 * Hardware: MSI Z370 Gaming Pro Carbon, i7-8700k, GTX 1080 Ti (Windows driver 391.35)
 * Host system: Ubuntu 18.04, Kernel 4.15, libvirtd 4.0.0, qemu 2.11.1 (OVMF UEFI)
+
+* ASRock Z170 Extreme7+, i7-6700k, GTX 980 Ti, and Windows Server 2016 Standard (v1607 build 14393.0)
+* Stock Hyper-V role (Host) running Windows Server 2016 Standard (Guest, same version), Gen2 VM config v8, using Discrete Device Assignment
 
 ### Tested Non-Working Host Platforms
 * libvirtd 2.3.0 running qemu 2.6.50 using bios
