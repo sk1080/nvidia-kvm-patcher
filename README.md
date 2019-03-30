@@ -62,7 +62,11 @@ Tested with a Asus Z170-WS, i7-6700k, and kernel 4.7
 * libvirtd 2.3.0 running qemu 2.6.50 using OVMF UEFI, with PCIe ACS Override patch
 * xen 4.7 using bios
 
-Tested with an ASRock Z170 Extreme7+, i7-6700k, GTX 980 Ti, and Windows Server 2016 Standard (v1607 build 14393.0)
+Also tested with:
+* Hardware: MSI Z370 Gaming Pro Carbon, i7-8700k, GTX 1080 Ti (Windows driver 391.35)
+* Host system: Ubuntu 18.04, Kernel 4.15, libvirtd 4.0.0, qemu 2.11.1 (OVMF UEFI)
+
+* ASRock Z170 Extreme7+, i7-6700k, GTX 980 Ti, and Windows Server 2016 Standard (v1607 build 14393.0)
 * Stock Hyper-V role (Host) running Windows Server 2016 Standard (Guest, same version), Gen2 VM config v8, using Discrete Device Assignment
 
 ### Tested Non-Working Host Platforms
