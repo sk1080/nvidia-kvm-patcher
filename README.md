@@ -22,7 +22,7 @@ However, the driver errored out with code 43, or outright blue-screened your VM
 
 This is because NVIDIA "Introduced a Bug" making their driver "Fail" on "Unsupported configurations", such as having a geforce, by "accidentally" detecting the prescence of a hypervisor
 
-### Alternate Workaround (recent libvirt + qemu)
+### Preferred Alternative for recent libvirt + qemu
 ```
 <domain>
     ...
@@ -57,7 +57,7 @@ This is because NVIDIA "Introduced a Bug" making their driver "Fail" on "Unsuppo
 
 ### Windows 7 Workaround
 
-For some reason, at least on the test system, signtool in the Windows 7 WDK Pre-Dates The Timestamp (possible reverse timezone compensation???). To get around this, remove all instances of the SKSoftware Certificate using mmc (if you have ran the script before), pre-date your clock by 2 days, and execute gencert.ps1 using powershell.
+For some reason, at least on the test system, signtool in the Windows 7 WDK Post-Dates The Timestamp (possible reverse timezone compensation???). To get around this, remove all instances of the SKSoftware Certificate using mmc (if you have ran the script before), pre-date your clock by 2 days, and execute gencert.ps1 using powershell.
 
 ### Tested Working Host Platforms
 Tested with a Asus Z170-WS, i7-6700k, and kernel 4.7
