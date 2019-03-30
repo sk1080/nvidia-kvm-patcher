@@ -6,7 +6,7 @@ Generic fix to NVIDIA Code 43 on Virtual Machines
 
 ### Quick Instructions
 
-    1. Start NVIDIA Driver Setup, Exit Before Installing (Unpacks to C:/NVIDIA)
+    1. Start NVIDIA Driver Setup, Exit Before Installing (Unpacks to C:/NVIDIA, you might have to dupe the folder before exit on recent drivers as they seem to insta-nuke it)
     2. Install the appropriate WDK/DDK, See OS Support
     3. If on Windows 7, See Windows 7 Workaround
     4. Enable Test Mode (bcdedit /set testsigning on) and Reboot
@@ -63,6 +63,7 @@ For some reason, at least on the test system, signtool in the Windows 7 WDK Post
 Tested with a Asus Z170-WS, i7-6700k, and kernel 4.7
 * libvirtd 2.3.0 running qemu 2.6.50 using OVMF UEFI, with PCIe ACS Override patch
 * xen 4.7 using bios
+* retested system 03/29/2019 [Kernel 4.20, libvirtd 5.1.0, virt-manager 2.1.0, qemu 3.0.50, driver 419.67, Windows 10 1804]
 
 Also tested with:
 * Hardware: MSI Z370 Gaming Pro Carbon, i7-8700k, GTX 1080 Ti (Windows driver 391.35), Host system: Ubuntu 18.04, Kernel 4.15, libvirtd 4.0.0, qemu 2.11.1 (OVMF UEFI)
