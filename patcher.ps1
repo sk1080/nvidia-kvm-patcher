@@ -87,8 +87,8 @@ Write-Host '[+] Attempting to Test Sign Driver'
 $inf2cat = ''
 $signtool = ''
 
-$inf2cat_paths = 'C:/Program Files (x86)/Windows Kits/10/bin/x86/Inf2Cat.exe', 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.17763.0/x86/Inf2Cat.exe', 'C:/Program Files (x86)/Windows Kits/10/bin/10.0.17134.0/x86/Inf2Cat.exe', 'C:/WinDDK/7600.16385.1/bin/selfsign/Inf2Cat.exe'
-$signtool_paths = 'C:/Program Files (x86)/Windows Kits/10/Tools/bin/i386/signtool.exe', 'C:/WinDDK/7600.16385.1/bin/amd64/signtool.exe'
+$inf2cat_paths = dir -Path C:\ -Filter Inf2cat.exe -Recurse -ErrorAction SilentlyContinue | %{$_.FullName}
+$signtool_paths = dir -Path C:\ -Filter signtool.exe -Recurse -ErrorAction SilentlyContinue | %{$_.FullName}
 
 foreach($path in $inf2cat_paths)
 {
@@ -110,12 +110,12 @@ foreach($path in $signtool_paths)
 
 if(-Not(Test-Path $inf2cat))
 {
-    Write-Host "[!] Failure: Unable to locate inf2cat, see/edit script for expected paths"
+    Write-Host "[!] Failure: Unable to locate inf2cat, edit script to enter path manually"
     exit
 }
 if(-Not(Test-Path $signtool))
 {
-    Write-Host "[!] Failure: Unable to locate signtool, see/edit script for expected paths"
+    Write-Host "[!] Failure: Unable to locate signtool, edit script to enter path manually"
     exit
 }
 
