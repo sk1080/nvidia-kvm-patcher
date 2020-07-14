@@ -108,12 +108,12 @@ foreach($path in $signtool_paths)
     }
 }
 
-if(-Not(Test-Path $inf2cat))
+if([String]::IsNullOrEmpty($inf2cat) -or -Not(Test-Path $inf2cat))
 {
     Write-Host "[!] Failure: Unable to locate inf2cat, see/edit script for expected paths"
     exit
 }
-if(-Not(Test-Path $signtool))
+if([String]::IsNullOrEmpty($signtool) -or -Not(Test-Path $signtool))
 {
     Write-Host "[!] Failure: Unable to locate signtool, see/edit script for expected paths"
     exit
