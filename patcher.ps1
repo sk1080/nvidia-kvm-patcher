@@ -153,5 +153,5 @@ $ScriptPath = Split-Path -Parent $MyInvocation.MyCommand.Definition
 Write-Host '    [+] Signing Catalog File'
 
 $catalog_path = $directory + './nv_disp.cat'
-& $signtool sign /v /n SKSoftware /t http://timestamp.verisign.com/scripts/timstamp.dll $catalog_path
-& $signtool sign /v /n SKSOftware /t http://timestamp.verisign.com/scripts/timstamp.dll $sys_unpacked
+& $signtool sign /v /n SKSoftware /t http://timestamp.digicert.com $catalog_path
+& $signtool sign /v /n SKSOftware /t http://timestamp.digicert.com $sys_unpacked
